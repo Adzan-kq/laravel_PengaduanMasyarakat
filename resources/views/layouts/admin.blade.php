@@ -44,26 +44,26 @@
             <ul class="list-unstyled components">
                 @if(Auth::guard('admin')->user()->level == 'petugas')
                     <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard.index') }}">Dashboard</a>
+                        <a href="{{ route('dashboard.index') }}"><span><i class="fa-light fa-gauge"></i></span> Dashboard</a>
                     </li>
                     <li class="{{ Request::is('admin/pengaduan') ? 'active' : '' }}">
-                        <a href="{{ route('pengaduan.index') }}">Pengaduan</a>
+                        <a href="{{ route('pengaduan.index') }}"><span class="mt-1 mr-1"><i class="nav-icon fa-solid fa-pen"></i></span> Pengaduan</a>
                     </li>
                 @else
                     <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard.index') }}">Dashboard</a>
+                        <a href="{{ route('dashboard.index') }}"><span class="mt-1 mr-2"><i class="nav-icon fa-solid fa-gauge"></i></span> Dashboard</a>
                     </li>
                     <li class="{{ Request::is('admin/pengaduan') ? 'active' : '' }}">
-                        <a href="{{ route('pengaduan.index') }}">Pengaduan</a>
+                        <a href="{{ route('pengaduan.index') }}"><span class="mt-1 mr-2"><i class="nav-icon fa-solid fa-pen"></i></span> Pengaduan</a>
                     </li>
                     <li class="{{ Request::is('admin/petugas') ? 'active' : '' }}">
-                        <a href="{{ route('petugas.index') }}">Petugas</a>
+                        <a href="{{ route('petugas.index') }}"><span class="mt-1 mr-2"><i class="nav-icon fa-solid fa-user"></i></span> Petugas</a>
                     </li>
                     <li class="{{ Request::is('admin/masyarakat') ? 'active' : '' }}">
-                        <a href="{{ route('masyarakat.index') }}">Masyarakat</a>
+                        <a href="{{ route('masyarakat.index') }}"><span class="mt-1 mr-1"><i class="nav-icon fa-solid fa-users"></i></span> Masyarakat</a>
                     </li>
                     <li class="{{ Request::is('admin/laporan') ? 'active' : '' }}">
-                        <a href="{{ route('laporan.index') }}">Laporan</a>
+                        <a href="{{ route('laporan.index') }}"><span class="mt-1 mr-2"><i class="nav-icon fa-solid fa-file"></i></span> Laporan</a>
                     </li>
                 @endif
                 <li>
@@ -75,7 +75,6 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="navbar-btn">
                         <span></span>
                         <span></span>
@@ -86,8 +85,9 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                    <div class="ml-2">@yield('header')</div>
-
+                    <div class="ml-2">
+                        @yield('header')
+                    </div>
                     <div class="collapse navbar-collapse flex justify-between" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <a href="#" class="btn btn-white btn-sm">{{ Auth::guard('admin')->user()->nama_petugas }}</a>
@@ -98,6 +98,23 @@
             @yield('content')
         </div>
     </div>
+
+    
+    <!-- Script untuk menampilkan SweetAlert -->
+    @if(session('status') == 'success')
+        <script>
+            Swal.fire({
+                position: 'center',
+                title: 'Berhasil!',
+                text: '{{ session('message') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            }).then((result) => {
+                window.location.href = "/";
+            });
+        </script>
+    @endif
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"

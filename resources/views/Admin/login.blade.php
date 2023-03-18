@@ -13,15 +13,26 @@
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
       <style>
-         body {
-               background: #102b3e;
-         }
+        body {
+            background: #102b3e;
+        }
       
-         .btn-purple {
-               background: #6a70fc;
-               width: 100%;
-               color: #fff;
-         }
+        .btn-purple {
+            background: #6a70fc;
+            width: 100%;
+            color: #fff;
+            transition: 0.2 ease-in-out;
+        }
+
+        .btn-purple:hover{
+            background: #100f5c;
+            color: white;
+            scale: 1.05;
+        }
+
+        .btn-purple:active {
+            scale: 0.95;
+        }
       </style>
 
       <title>Login Admin / Petugas</title>

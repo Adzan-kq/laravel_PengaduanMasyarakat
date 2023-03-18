@@ -32,7 +32,10 @@ class AdminController extends Controller
         $auth = Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password]);
 
         if ($auth) {
-            return redirect()->route('dashboard.index');
+            return redirect()->route('dashboard.index')->with([
+                'status' => 'success',
+                'message' => 'Berhasil Login.'
+            ]);
         } else {
             return redirect()->back()->with(['pesan' => 'Akun tidak terdaftar!']);
         }
